@@ -1,0 +1,28 @@
+﻿@model List<TodoItem>
+<div class="row">
+    <div class="col-6"></div>
+    <div class="col-6 d-flex justify-content-end px-4">
+        <a asp-controller="Todo" asp-action="Create" class="btn btn-primary"> Add a todo </a>
+    </div>
+</div>
+
+<ul class="list-group mt-5 ">
+
+    @foreach(var todo in Model)
+    {   
+        <div class="row px-5 py-3 bg-black border-bottom border-2">
+            <div class="col-6 d-flex align-items-center">
+                <form method="post" asp-controller="Todo" asp-action="Check" asp-route-id="@todo.Id">
+                    <button class="btn" type="submit">@((todo.IsCompleted) ? "✔️" : "⭕")</button>
+                </form>
+                <a style="cursor:pointer" class="text-decoration-none text-white" asp-controller="Todo" asp-action="Observe" asp-route-id="@todo.Id">
+                    @todo.Title
+                </a>
+            </div>
+            <div class="col-6">
+                <a asp-controller="Todo" asp-action="Edit" asp-route-id="@todo.Id" class="btn btn-primary">Edit</a>
+                <a asp-controller="Todo" asp-action="Delete" asp-route-id="@todo.Id" class="btn btn-danger">Delete</a>
+            </div>
+        </div>
+    }
+</ul>

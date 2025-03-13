@@ -1,0 +1,27 @@
+﻿@model TodoItem
+
+<form method="post">
+    <legend>Create Todo</legend>
+    <div class="mb-3">
+        <label asp-for="Title" class="form-label"></label>
+        <input asp-for="Title" class="form-control" disabled placeholder="Enter todo title">
+    </div>
+    <div class="mb-3">
+        <label asp-for="Description" class="form-label"></label>
+        <input asp-for="Description" class="form-control" disabled placeholder="Enter todo description" />
+    </div>
+    <div class="mb-3">
+        <label for="IsCompleted" class="form-label">Status</label>
+        @if (@Model.IsCompleted == true)
+        {
+            <input type="text" id="IsCompleted" class="form-control" disabled value="Completed" />
+        }
+        else
+        {
+            <input type="text" id="IsCompleted" class="form-control" disabled value="Not Completed" />
+        }
+    </div>
+
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a asp-controller="Todo" asp-action="Index" class="btn btn-secondary">Back to List</a>
+</form>
